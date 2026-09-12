@@ -43,6 +43,18 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL0NvbXBvbmVudHMvX0Jvb2tpbmdUYWdzQ29tcG9uZW50UGFydGlhbC9EZWZhdWx0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[/home/esra/projects/FlightBooking/FlightBooking/Views/Shared/Components/_DefaultDestinationOfferComponentPartial/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL0NvbXBvbmVudHMvX0RlZmF1bHREZXN0aW5hdGlvbk9mZmVyQ29tcG9uZW50UGFydGlhbC9EZWZhdWx0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/esra/projects/FlightBooking/FlightBooking/Views/Shared/Components/_DefaultFeatureSectionComponentPartial/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL0NvbXBvbmVudHMvX0RlZmF1bHRGZWF0dXJlU2VjdGlvbkNvbXBvbmVudFBhcnRpYWwvRGVmYXVsdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/esra/projects/FlightBooking/FlightBooking/Views/Shared/Components/_DefaultFlightStatusComponentPartial/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL0NvbXBvbmVudHMvX0RlZmF1bHRGbGlnaHRTdGF0dXNDb21wb25lbnRQYXJ0aWFsL0RlZmF1bHQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [/home/esra/projects/FlightBooking/FlightBooking/Views/Shared/Components/_DefaultHeadComponentPartial/Default.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL0NvbXBvbmVudHMvX0RlZmF1bHRIZWFkQ29tcG9uZW50UGFydGlhbC9EZWZhdWx0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -53,6 +65,14 @@ build_metadata.AdditionalFiles.CssScope =
 
 [/home/esra/projects/FlightBooking/FlightBooking/Views/Shared/Components/_DefaultNavbarComponentPartial/Default.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL0NvbXBvbmVudHMvX0RlZmF1bHROYXZiYXJDb21wb25lbnRQYXJ0aWFsL0RlZmF1bHQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/esra/projects/FlightBooking/FlightBooking/Views/Shared/Components/_DefaultOfferDealComponentPartial/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL0NvbXBvbmVudHMvX0RlZmF1bHRPZmZlckRlYWxDb21wb25lbnRQYXJ0aWFsL0RlZmF1bHQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/esra/projects/FlightBooking/FlightBooking/Views/Shared/Components/_DefaultPopularDestinationsComponentPartial/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL0NvbXBvbmVudHMvX0RlZmF1bHRQb3B1bGFyRGVzdGluYXRpb25zQ29tcG9uZW50UGFydGlhbC9EZWZhdWx0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [/home/esra/projects/FlightBooking/FlightBooking/Views/Shared/Components/_DefaultSliderComponentPartial/Default.cshtml]
