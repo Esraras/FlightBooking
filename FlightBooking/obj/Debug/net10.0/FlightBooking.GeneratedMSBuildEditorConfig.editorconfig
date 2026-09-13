@@ -1,15 +1,23 @@
 is_global = true
 build_property.TargetFramework = net10.0
-build_property.TargetFrameworkIdentifier = .NETCoreApp
-build_property.TargetFrameworkVersion = v10.0
+build_property.TargetFramework = net10.0
+build_property.TargetPlatformMinVersion = 
 build_property.TargetPlatformMinVersion = 
 build_property.UsingMicrosoftNETSdkWeb = true
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
 build_property.ProjectTypeGuids = 
 build_property.InvariantGlobalization = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
 build_property.PlatformNeutralAssembly = 
 build_property.EnforceExtendedAnalyzerRules = 
-build_property.EntryPointFilePath = 
+build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.TargetFrameworkIdentifier = .NETCoreApp
+build_property.TargetFrameworkVersion = v10.0
+build_property.EntryPointFilePath = 
 build_property.RootNamespace = FlightBooking
 build_property.RootNamespace = FlightBooking
 build_property.ProjectDir = /home/esra/projects/FlightBooking/FlightBooking/
@@ -22,6 +30,30 @@ build_property.MSBuildProjectDirectory = /home/esra/projects/FlightBooking/Fligh
 build_property._RazorSourceGeneratorDebug = 
 build_property.EffectiveAnalysisLevelStyle = 10.0
 build_property.EnableCodeStyleSeverity = 
+
+[/home/esra/projects/FlightBooking/FlightBooking/Areas/Admin/Views/Flights/CreateFlight.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvRmxpZ2h0cy9DcmVhdGVGbGlnaHQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/esra/projects/FlightBooking/FlightBooking/Areas/Admin/Views/Flights/FlightList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvRmxpZ2h0cy9GbGlnaHRMaXN0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/esra/projects/FlightBooking/FlightBooking/Areas/Admin/Views/Layout/AdminLayout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvTGF5b3V0L0FkbWluTGF5b3V0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/esra/projects/FlightBooking/FlightBooking/Areas/Admin/Views/Shared/Components/_AdminHeadComponentPartial/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvU2hhcmVkL0NvbXBvbmVudHMvX0FkbWluSGVhZENvbXBvbmVudFBhcnRpYWwvRGVmYXVsdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/esra/projects/FlightBooking/FlightBooking/Areas/Admin/Views/Shared/Components/_AdminSidebarComponentPartial/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvU2hhcmVkL0NvbXBvbmVudHMvX0FkbWluU2lkZWJhckNvbXBvbmVudFBhcnRpYWwvRGVmYXVsdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/esra/projects/FlightBooking/FlightBooking/Areas/Admin/Views/Shared/Components/_AdminTopbarComponentPartial/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvU2hhcmVkL0NvbXBvbmVudHMvX0FkbWluVG9wYmFyQ29tcG9uZW50UGFydGlhbC9EZWZhdWx0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
 
 [/home/esra/projects/FlightBooking/FlightBooking/Views/Default/index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRGVmYXVsdC9pbmRleC5jc2h0bWw=

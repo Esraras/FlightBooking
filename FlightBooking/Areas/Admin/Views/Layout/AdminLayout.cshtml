@@ -1,0 +1,21 @@
+
+
+<!DOCTYPE html>
+<html lang="tr">
+
+    @await Component.InvokeAsync("_AdminHeadComponentPartial")
+
+<body>
+
+@await Component.InvokeAsync("_AdminSidebarComponentPartial")
+@await Component.InvokeAsync("_AdminTopbarComponentPartial")
+
+
+@RenderBody()
+
+<!-- Toast Container -->
+<div class="toast-container-custom" id="toastContainer"></div>
+
+
+</body>
+</html>
