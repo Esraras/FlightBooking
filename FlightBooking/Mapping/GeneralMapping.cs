@@ -8,7 +8,7 @@ public class GeneralMapping : Profile
     {
         CreateMap<Entities.Flight, Dtos.FlightDtos.CreateFlightDtos>().ReverseMap();
         CreateMap<Entities.Flight, Dtos.FlightDtos.ResultFlightDtos>().ReverseMap();
-        CreateMap<Entities.Flight, Dtos.FlightDtos.GetFlightDtos>().ReverseMap();
+        CreateMap<Entities.Flight, Dtos.FlightDtos.GetFlightByIdDtos>().ReverseMap();
         CreateMap<Entities.Flight, Dtos.FlightDtos.UpdateFlightDtos>().ReverseMap();
     }
 }
