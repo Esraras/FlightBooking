@@ -1,6 +1,6 @@
 namespace FlightBooking.Dtos.FlightDtos;
 
-public class GetFlightDtos
+public class GetFlightByIdDtos
 {
         public string FlightId { get; set; } // ObjectId
         public string FlightNumber { get; set; } // TK123, PC2023

@@ -1,6 +1,20 @@
+using System.Reflection;
+using FlightBooking.Services.FlightServices;
+using FlightBooking.Settings;
+using Microsoft.Extensions.Options;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+
+builder.Services.AddScoped<IFlightService, FlightService>();
+builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
+
+builder.Services.Configure<DatabaseSettings>(builder.Configuration.GetSection("DatabaseSettingsKey"));
+builder.Services.AddScoped<IDatabaseSettings>(sp =>
+{
+    return sp.GetRequiredService<IOptions<DatabaseSettings>>().Value;
+});
+
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
