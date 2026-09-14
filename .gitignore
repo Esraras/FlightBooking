@@ -68,8 +68,10 @@ ScaffoldingReadMe.txt
 
 # StyleCop
 StyleCopReport.xml
-git rm -r --cached FlightBooking/bin/
-git rm -r --cached FlightBooking/obj/
+
+FlightBooking/bin/
+FlightBooking/obj/
+
 # Files built by Visual Studio
 *_i.c
 *_p.c
