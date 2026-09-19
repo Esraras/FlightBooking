@@ -1,6 +1,6 @@
 using FlightBooking.Dtos.BookingDtos;
+using FlightBooking.Services.BookingServices;
 using FlightBooking.Services.FlightServices;
-using Humanizer;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FlightBooking.Areas.Admin.Controllers;
@@ -8,25 +8,25 @@ namespace FlightBooking.Areas.Admin.Controllers;
 [Area("Admin")]
 public class BookingController : Controller
 {
-
     private readonly IFlightService _flightService;
-
-    public BookingController(IFlightService flightService)
+    private readonly IBookingService _bookingService;
+    public BookingController(IFlightService flightService, IBookingService bookingService)
     {
         _flightService = flightService;
+        _bookingService = bookingService;
     }
-
 
     [HttpGet]
-    public async Task<IActionResult> CreateBooking(string id)
+    public async Task<IActionResult> CreateBooking(string flightId)
     {
-        
-        var value = await _flightService.GetFlightByIdAsync(id);
+
+        var value = await _flightService.GetFlightByIdAsync(flightId);
+
         if (value == null)
-    {
-        return NotFound("Belirtilen ID ile eşleşen uçuş bulunamadı.");
-    }
-        ViewBag.id = id;
+        {
+            return NotFound("Belirtilen ID ile eşleşen uçuş bulunamadı.");
+        }
+        ViewBag.flightId = flightId;
         ViewBag.FlightNumber = value.FlightNumber;
         ViewBag.DepartureAirportCode = value.DepartureAirportCode;
         ViewBag.DepartureAirportName = value.DepartureAirportName;
@@ -36,6 +36,13 @@ public class BookingController : Controller
         ViewBag.ArrivalTime = value.ArrivalTime;
         ViewBag.AirlineCode = value.AirlineCode;
         return View();
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> CreateBooking(CreateBookingDto createBookingDto)
+    {
+        await _bookingService.CreateBookingAsync(createBookingDto);
+        return RedirectToAction("BookingList", "Booking", new { area = "Admin" });
     }
 
     public IActionResult BookingList()
