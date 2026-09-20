@@ -32,4 +32,14 @@ public class FlightsController : Controller
         await _flightService.CreateFlightAsync(createFlightDto);
         return RedirectToAction("FlightList");
     }
+
+
+    public async Task<IActionResult> FlightDetail(string id)
+    {
+        var flight = await _flightService.GetFlightByIdAsync(id);
+        var passengers = await _flightService.GetFlightDetailsWithPassengers(id);
+        ViewBag.Flight = flight;
+        
+        return View(passengers);
+    }
 }
