@@ -1,4 +1,5 @@
 using FlightBooking.Dtos.FlightDtos;
+using FlightBooking.Services.BookingServices;
 using FlightBooking.Services.FlightServices;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,7 +9,6 @@ namespace FlightBooking.Areas.Admin.Controllers;
 public class FlightsController : Controller
 {
     private readonly IFlightService _flightService;
-
     public FlightsController(IFlightService flightService)
     {
         _flightService = flightService;
@@ -34,20 +34,20 @@ public class FlightsController : Controller
     }
 
 
-    public async Task<IActionResult> FlightDetail(string id)
-    {
-       var flight = await _flightService.GetFlightByIdAsync(id);
-            var passengers = await _flightService.GetFlightDetailsWithPassengers(id);
+   public async Task<IActionResult> FlightDetail(string id)
+{
+    var flight = await _flightService.GetFlightByIdAsync(id);
+    var passengers = await _flightService.GetFlightDetailsWithPassengers(id);
 
-            ViewBag.FlightNumber = flight?.FlightNumber ?? "—";
-            ViewBag.AirlineCode = flight?.AirlineCode ?? "—";
-            ViewBag.DepartureAirportCode = flight?.DepartureAirportCode ?? "—";
-            ViewBag.ArrivalAirportCode = flight?.ArrivalAirportCode ?? "—";
-            ViewBag.DepartureTime = flight?.DepartureTime;  
-            ViewBag.ArrivalTime = flight?.ArrivalTime;
-            ViewBag.TotalSeats = flight?.TotalSeats ?? 0;
-            ViewBag.Status = flight?.Status ?? "—";
+    ViewBag.FlightNumber = flight?.FlightNumber ?? "—";
+    ViewBag.AirlineCode = flight?.AirlineCode ?? "—";
+    ViewBag.DepartureAirportCode = flight?.DepartureAirportCode ?? "—";
+    ViewBag.ArrivalAirportCode = flight?.ArrivalAirportCode ?? "—";
+    ViewBag.DepartureTime = flight?.DepartureTime;
+    ViewBag.ArrivalTime = flight?.ArrivalTime;
+    ViewBag.TotalSeats = flight?.TotalSeats ?? 0;
+    ViewBag.Status = flight?.Status ?? "—";
 
-            return View(passengers);
-    }
+    return View(passengers);
+}
 }

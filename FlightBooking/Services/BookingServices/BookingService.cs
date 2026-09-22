@@ -104,9 +104,25 @@ public class BookingService : IBookingService
         throw new NotImplementedException();
     }
 
-    public Task<(string Name, string Surname)> GetPassengerNameByIdAsync(string passengerId)
+    public async Task<(string Name, string Surname)> GetPassengerNameByIdAsync(string passengerId)
     {
-        throw new NotImplementedException();
+        var booking = await _bookingCollection
+            .Find(x => x.Passengers.Any(p => p.PassengerId == passengerId))
+            .FirstOrDefaultAsync();
+
+        var passenger = booking.Passengers.FirstOrDefault(p => p.PassengerId == passengerId);
+
+        if (passenger == null)
+            return (null, null);
+
+        return (passenger.Name, passenger.Surname);
+    }
+
+    public async Task<Booking> GetBookingByPassengerIdAsync(string passengerId)
+    {
+        return await _bookingCollection
+            .Find(x => x.Passengers.Any(p => p.PassengerId == passengerId))
+            .FirstOrDefaultAsync();
     }
 
     public Task<string> GetPnrByPassengerIdAsync(string passengerId)

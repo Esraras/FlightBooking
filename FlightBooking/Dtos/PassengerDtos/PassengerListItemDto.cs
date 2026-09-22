@@ -2,7 +2,6 @@ namespace FlightBooking.Dtos.PassengerDtos;
 
 public class PassengerListItemDto
 {
-        //public string PassengerId { get; set; }sss
         // Yolcu kolonu
         public string PassengerId { get; set; }
         public string Name { get; set; }
