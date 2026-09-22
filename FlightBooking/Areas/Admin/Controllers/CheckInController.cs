@@ -1,4 +1,6 @@
+using FlightBooking.Dtos.CheckInDtos;
 using FlightBooking.Services.BookingServices;
+using FlightBooking.Services.CheckInServices;
 using FlightBooking.Services.FlightServices;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,23 +10,27 @@ namespace FlightBooking.Areas.Admin.Controllers;
 public class CheckInController : Controller
 {
 
-    private readonly IFlightService _flightService;
     private readonly IBookingService _bookingService;
-    public CheckInController(IFlightService flightService, IBookingService bookingService)
+    private readonly ICheckInService _checkInService;
+    private readonly IFlightService _flightService;
+    public CheckInController(IBookingService bookingService, ICheckInService checkInService, IFlightService flightService)
     {
-        _flightService = flightService;
         _bookingService = bookingService;
+        _checkInService = checkInService;
+        _flightService = flightService;
     }
 
     public async Task<IActionResult> Index(string id) // id = passengerId
     {
+        ViewBag.PassengerId = id;
         // 1. Yolcuya ait Booking verisini çekiyoruz
         var booking = await _bookingService.GetBookingByPassengerIdAsync(id);
 
         if (booking != null)
         {
             // PNR bilgisini alıyoruz
-            ViewBag.Pnr = booking.PnrNumber;
+            ViewBag.PnrNumber = booking.PnrNumber;
+            ViewBag.FlightId = booking.FlightId;
 
             // Yolcu detaylarını alıyoruz
             var passenger = booking.Passengers.FirstOrDefault(p => p.PassengerId == id);
@@ -57,8 +63,9 @@ public class CheckInController : Controller
     }
 
     [HttpPost]
-    public async Task<IActionResult> Index()
+    public async Task<IActionResult> Index(CompleteCheckInDto dto)
     {
-        return RedirectToAction("Index", "Home");
+        await _checkInService.CompleteCheckInAsync(dto);
+        return RedirectToAction("");
     }
 }
