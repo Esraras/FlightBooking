@@ -6,7 +6,7 @@ using MongoDB.Driver;
 namespace FlightBooking.Services.BookingServices;
 
 public class BookingService : IBookingService
-{ 
+{
     private readonly IMongoCollection<Booking> _bookingCollection;
     private readonly IMongoCollection<Flight> _flightCollection;
 
@@ -49,6 +49,8 @@ public class BookingService : IBookingService
         // 🔥 5. Fiyat hesaplama
         var totalPrice = passengerCount * flight.BasePrice;
 
+        var pnr = await GenerateUniquePnrAsync();
+
         // 🔥 6. Booking oluştur
         var booking = new Booking
         {
@@ -61,21 +63,42 @@ public class BookingService : IBookingService
 
             TotalPrice = totalPrice,
             BookingDate = DateTime.Now,
-            Status = "Confirmed"
+            Status = "Confirmed",
+            PnrNumber = pnr
         };
-
         await _bookingCollection.InsertOneAsync(booking);
 
         // 🔥 7. Koltuk düş
-      /*  var update = Builders<Flight>.Update
-            .Inc(x => x.AvailableSeats, -passengerCount);
+        /*  var update = Builders<Flight>.Update
+              .Inc(x => x.AvailableSeats, -passengerCount);
 
-        await _flightCollection.UpdateOneAsync(
-            x => x.FlightId == dto.FlightId,
-            update
-        );*/
+          await _flightCollection.UpdateOneAsync(
+              x => x.FlightId == dto.FlightId,
+              update
+          );*/
     }
 
+    private async Task<string> GenerateUniquePnrAsync()
+    {
+        const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        var random = new Random();
+
+        string pnr;
+        bool exists;
+
+        do
+        {
+            pnr = new string(Enumerable.Repeat(chars, 6)
+                .Select(s => s[random.Next(s.Length)]).ToArray());
+
+            exists = await _bookingCollection
+                .Find(x => x.PnrNumber == pnr)
+                .AnyAsync();
+
+        } while (exists);
+
+        return pnr;
+    }
     public Task<string> GetGateByPassengerIdAsync(string passengerId)
     {
         throw new NotImplementedException();

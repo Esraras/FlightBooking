@@ -65,7 +65,7 @@ public class FlightService : IFlightService
                     //PaymentStatus = b.PaymentStatus,
                     TicketStatus = p.TicketStatus,
                     PassengerId=p.PassengerId
-                }))
+                })) 
                 .ToList();
 
             return passengers;
