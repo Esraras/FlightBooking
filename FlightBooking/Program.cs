@@ -5,6 +5,7 @@ using DotNetEnv;
 using FlightBooking.Services.BookingServices;
 using FlightBooking.Services.CheckInServices;
 using FlightBooking.Services.CheckInService;
+using FlightBooking.Services.MachineLearningServices;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,7 +27,10 @@ var bookingCollectionName = Environment.GetEnvironmentVariable("MONGODB_BOOKING_
 
 var checkInCollectionName = Environment.GetEnvironmentVariable("MONGODB_CHECKIN_COLLECTION") 
     ?? builder.Configuration["DatabaseSettingsKey:CheckInCollectionName"];
-    
+
+var flightDemandHistoryCollection = Environment.GetEnvironmentVariable("MONGODB_FLIGHT_DEMAND_COLLECTION") 
+    ?? builder.Configuration["DatabaseSettingsKey:FlightDemandHistoryCollection"];
+
 // 3. IDatabaseSettings nesnesini oluşturup AddSingleton/AddScoped ile kaydet
 var databaseSettings = new DatabaseSettings
 {
@@ -34,13 +38,16 @@ var databaseSettings = new DatabaseSettings
     DatabaseName = databaseName!,
     FlightCollectionName = flightCollectionName!,
     BookingCollectionName = bookingCollectionName!,
-    CheckInCollectionName = checkInCollectionName!
+    CheckInCollectionName = checkInCollectionName!,
+    FlightDemandHistoryCollection = flightDemandHistoryCollection!
 };
 
 builder.Services.AddSingleton<IDatabaseSettings>(databaseSettings);
 builder.Services.AddScoped<IFlightService, FlightService>();
 builder.Services.AddScoped<IBookingService, BookingService>();
 builder.Services.AddScoped<ICheckInService, CheckInService>();
+builder.Services.AddSingleton<FlightMlService>();
+builder.Services.AddScoped<MongoFlightDataService>();
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 builder.Services.AddControllersWithViews();
 
