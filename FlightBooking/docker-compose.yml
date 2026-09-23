@@ -1,0 +1,8 @@
+version: '3.8'
+services:
+  flightbooking-api:
+    build: .
+    ports:
+      - "5182:5182"
+    env_file:
+      - .env

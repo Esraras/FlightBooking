@@ -8,7 +8,7 @@
 *.env
 **/.env
 appsettings.Development.json
-
+Readme.md
 # User-specific files
 *.rsuser
 *.suo
