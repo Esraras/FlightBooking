@@ -1,4 +1,5 @@
 using FlightBooking.MachineLearningModels;
+using FlightBooking.MachineLearningRegressionModels;
 using FlightBooking.Settings;
 using MongoDB.Driver;
 
@@ -6,34 +7,53 @@ namespace FlightBooking.Services.MachineLearningServices;
 
 public class MongoFlightDataService
 {
-     private readonly IMongoCollection<FlightRawData> _collection;
-        public MongoFlightDataService(IDatabaseSettings settings)
+    private readonly IMongoCollection<FlightRawData> _collection;
+    public MongoFlightDataService(IDatabaseSettings settings)
+    {
+        var client = new MongoClient(settings.ConnectionString);
+        var database = client.GetDatabase(settings.DatabaseName);
+        _collection = database.GetCollection<FlightRawData>(settings.FlightDemandHistoryCollection);
+    }
+
+    public async Task<List<FlightRawData>> GetAllAsync()
+    {
+        return await _collection.Find(_ => true).ToListAsync();
+    }
+
+    public async Task<List<FlightData>> ConvertToMlDataAsync()
+    {
+        var rawData = await GetAllAsync();
+
+        var mlData = rawData.Select(x => new FlightData
         {
-            var client = new MongoClient(settings.ConnectionString);
-            var database = client.GetDatabase(settings.DatabaseName);
-            _collection = database.GetCollection<FlightRawData>(settings.FlightDemandHistoryCollection);
-        }
-        
-        public async Task<List<FlightRawData>> GetAllAsync()
-        {
-            return await _collection.Find(_ => true).ToListAsync();
-        }
+            Month = DateTime.Parse(x.FlightDate).Month,
 
-        public async Task<List<FlightData>> ConvertToMlDataAsync()
-        {
-            var rawData = await GetAllAsync();
+            DayOfWeek = (float)DateTime.Parse(x.FlightDate).DayOfWeek,
 
-            var mlData = rawData.Select(x => new FlightData
-            {
-                Month = DateTime.Parse(x.FlightDate).Month,
+            FlightType = x.FlightType == "Morning" ? 0 : 1,
 
-                DayOfWeek = (float)DateTime.Parse(x.FlightDate).DayOfWeek,
+            IsFull = x.PassengerCount >= x.Capacity * 0.9
+        }).ToList();
 
-                FlightType = x.FlightType == "Morning" ? 0 : 1,
+        return mlData;
+    }
 
-                IsFull = x.PassengerCount >= x.Capacity * 0.9
-            }).ToList();
+    public async Task<List<FlightRegressionData>> ConvertToRegressionDataAsync()
+{
+    var rawData = await GetAllAsync();
 
-            return mlData;
-        }
+    var regressionData = rawData.Select(x => new FlightRegressionData
+    {
+        Month = DateTime.Parse(x.FlightDate).Month,
+
+        DayOfWeek = (float)DateTime.Parse(x.FlightDate).DayOfWeek,
+
+        FlightType = x.FlightType == "Morning" ? 0 : 1,
+
+        PassengerCount = x.PassengerCount
+    }).ToList();
+
+    return regressionData;
+}
+
 }
