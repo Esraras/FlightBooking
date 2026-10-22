@@ -7,6 +7,8 @@ using FlightBooking.Services.CheckInServices;
 using FlightBooking.Services.CheckInService;
 using FlightBooking.Services.MachineLearningServices;
 using FlightBooking.Services.NoShowServices;
+using FlightBooking.Services.OverBookingNoShowServices;
+using FlightBooking.AgentServices;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -55,7 +57,9 @@ builder.Services.AddSingleton<FlightMlService>();
 builder.Services.AddScoped<MongoFlightDataService>();
 builder.Services.AddSingleton<FlightRegressionService>();
 builder.Services.AddScoped<NoShowService>();
+builder.Services.AddScoped<NoShowPredictionService>();
 builder.Services.AddScoped<OverbookingRecommendationService>();
+builder.Services.AddScoped<ITravelAgentService, TravelAgentService>();
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 builder.Services.AddControllersWithViews();
 
