@@ -1,9 +1,19 @@
+using FlightBooking.AgentServices.OpenAIServices;
+using FlightBooking.Dtos.AgentDtos;
+
 namespace FlightBooking.AgentServices;
 
 public class TravelAgentService : ITravelAgentService
 {
-    public async Task<string> GetRestaurantRecommendationAsync(string cityName)
+    private readonly IOpenAIServices _openAIServices;
+
+    public TravelAgentService(IOpenAIServices openAIServices)
     {
-        return $"Here are some restaurant recommendations for {cityName}: 1. The Gourmet Spot, 2. City Bites, 3. Flavor Haven.";
+        _openAIServices = openAIServices;
+    }
+
+    public async Task<AgentResponseDto> AskAgentAsync(string prompt)
+    {
+        return await _openAIServices.GetResponseAsync(prompt);
     }
 }

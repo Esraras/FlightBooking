@@ -1,6 +1,8 @@
+using FlightBooking.Dtos.AgentDtos;
+
 namespace FlightBooking.AgentServices.OpenAIServices;
 
 public interface IOpenAIServices
 {
-    Task<string> GetResponseAsync(string prompt);
+    Task<AgentResponseDto> GetResponseAsync(string prompt);
 }

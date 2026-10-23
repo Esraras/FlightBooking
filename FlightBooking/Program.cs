@@ -9,6 +9,8 @@ using FlightBooking.Services.MachineLearningServices;
 using FlightBooking.Services.NoShowServices;
 using FlightBooking.Services.OverBookingNoShowServices;
 using FlightBooking.AgentServices;
+using FlightBooking.AgentServices.OpenAIServices;
+using FlightBooking.AgentSettings;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -59,10 +61,12 @@ builder.Services.AddSingleton<FlightRegressionService>();
 builder.Services.AddScoped<NoShowService>();
 builder.Services.AddScoped<NoShowPredictionService>();
 builder.Services.AddScoped<OverbookingRecommendationService>();
+builder.Services.AddScoped<IOpenAIServices, OpenAIServices>();
 builder.Services.AddScoped<ITravelAgentService, TravelAgentService>();
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 builder.Services.AddControllersWithViews();
-
+builder.Services.AddHttpClient();
+builder.Services.Configure<OpenAISettings>(builder.Configuration.GetSection("OpenAI"));
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

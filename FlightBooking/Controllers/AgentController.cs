@@ -1,4 +1,5 @@
 using FlightBooking.AgentServices;
+using FlightBooking.Dtos.AgentDtos;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FlightBooking.Controllers;
@@ -11,11 +12,16 @@ public class AgentController: Controller
     {
         _travelAgentService = travelAgentService;
     }
-
     [HttpGet]
-    public async Task<IActionResult> GetRestaurantRecommendation(string cityName)
+    public IActionResult AskAgent()
     {
-        var result = await _travelAgentService.GetRestaurantRecommendationAsync(cityName);
-        return Content(result);
+        return View();
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> AskAgent(AgentPromptRequestDto request)
+    {
+        var result = await _travelAgentService.AskAgentAsync(request.Prompt);
+        return Json(result);
     }
 }
