@@ -11,6 +11,10 @@ using FlightBooking.Services.OverBookingNoShowServices;
 using FlightBooking.AgentServices;
 using FlightBooking.AgentServices.OpenAIServices;
 using FlightBooking.AgentSettings;
+using FlightBooking.AgentServices.IntentDetectors;
+using FlightBooking.AgentServices.PromptBuilders;
+using FlightBooking.Tools.WeatherTool;
+using FlightBooking.AgentServices.CityDetectors;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -63,6 +67,10 @@ builder.Services.AddScoped<NoShowPredictionService>();
 builder.Services.AddScoped<OverbookingRecommendationService>();
 builder.Services.AddScoped<IOpenAIServices, OpenAIServices>();
 builder.Services.AddScoped<ITravelAgentService, TravelAgentService>();
+builder.Services.AddScoped<ITravelPromptBuilder, TravelPromptBuilder>();
+builder.Services.AddScoped<IIntentDetector, TravelIntentDetector>();
+builder.Services.AddScoped<IWeatherTool, WeatherTool>();
+builder.Services.AddScoped<ICityExtractor, OpenAICityExtractor>();
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 builder.Services.AddControllersWithViews();
 builder.Services.AddHttpClient();

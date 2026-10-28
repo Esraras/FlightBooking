@@ -1,3 +1,5 @@
+using FlightBooking.Dtos.WeatherDtos;
+
 namespace FlightBooking.Dtos.AgentDtos;
 
 public class WeatherResult
@@ -19,5 +21,5 @@ public class WeatherResult
         public string Sunrise { get; set; }
         public string Sunset { get; set; }
 
-       // public List<WeatherForecastResult> Forecasts { get; set; } = new();
+        public List<WeatherForecastResult> Forecasts { get; set; } = new();
 }

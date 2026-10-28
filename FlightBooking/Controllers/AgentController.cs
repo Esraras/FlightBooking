@@ -19,7 +19,7 @@ public class AgentController: Controller
     }
 
     [HttpPost]
-    public async Task<IActionResult> AskAgent(AgentPromptRequestDto request)
+    public async Task<IActionResult> AskAgent([FromBody] AgentPromptRequestDto request)
     {
         var result = await _travelAgentService.AskAgentAsync(request.Prompt);
         return Json(result);

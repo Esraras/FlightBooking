@@ -8,5 +8,5 @@ public class AgentResponseDto
     public DateTime ResponseTime { get; set; }
     public string Intent { get; set; }
     public string? City { get; set; }
-    //public WeatherResult? Weather { get; set; }
+    public WeatherResult? Weather { get; set; }
 }
